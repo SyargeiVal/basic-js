@@ -23,9 +23,79 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  let arr = [];
+  for(let i = 0; i < matrix.length; i++){
+      arr[i] = [];
+      for(let k = 0; k < matrix[i].length; k++){
+          arr[i][k] = 0;
+          if(i == 0){
+              if(k == 0){
+                  if(matrix[i][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k]){ arr[i][k] += 1 };
+              }
+              if(k > 0 && k < matrix[i].length - 1){
+                  if(matrix[i][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k - 1]){ arr[i][k] += 1 };
+              }
+              if(k == matrix[i].length - 1){
+                  if(matrix[i + 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k - 1]){ arr[i][k] += 1 };
+              }
+          }
+          if(i > 0 && i < matrix.length - 1){
+              if(k == 0){
+                  if(matrix[i - 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k]){ arr[i][k] += 1 };
+              }
+              if(k > 0 && k < matrix[i].length - 1){
+                  if(matrix[i - 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k - 1]){ arr[i][k] += 1 };
+              }
+              if(k == matrix[i].length - 1){
+                  if(matrix[i + 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i + 1][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k]){ arr[i][k] += 1 };
+              }
+          }
+          if(i == matrix.length - 1){
+              if(k == 0){
+                  if(matrix[i - 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k + 1]){ arr[i][k] += 1 };
+              }
+              if(k > 0 && k < matrix[i].length - 1){
+                  if(matrix[i][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k + 1]){ arr[i][k] += 1 };
+                  if(matrix[i][k + 1]){ arr[i][k] += 1 };
+              }
+              if(k == matrix[i].length - 1){
+                  if(matrix[i][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k - 1]){ arr[i][k] += 1 };
+                  if(matrix[i - 1][k]){ arr[i][k] += 1 };
+              }
+          }
+      }
+  }
+  return arr;
 }
 
 module.exports = {
