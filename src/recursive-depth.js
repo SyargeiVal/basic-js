@@ -13,18 +13,13 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 class DepthCalculator {
   calculateDepth(arr) {
-    let count = 0, num = getNesting(arr);
-    function getNesting(array){
-        if(!Array.isArray(array)){ return; }
-        for( let el of array){
-            if(Array.isArray(el)){
-                count = count + 1;
-                return getNesting(el);
-            }
-        }
-        return count = count + 1;
+    if (Array.isArray(arr)) {
+      if (arr.length === 0) return 1;
+      const res = arr.map(el => this.calculateDepth(el));
+      return Math.max(...res) + 1;
+    } else {
+      return 0;
     }
-    return num;
   }
 }
 
