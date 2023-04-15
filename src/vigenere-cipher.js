@@ -20,13 +20,59 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(bool = true) {
+    this.bool = bool;
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  bool;
+  encrypt(m, k) {
+    const mess = m.split(' ').join('');
+    let res = '', j = 0;
+    const maxlength = Math.max(m.length, k.length);
+    for(let i = 0; i < maxlength; i++){
+      let indM = (i >= m.length) ? i % m.length : i;
+      let indK = (j >= k.length) ? j % k.length : j;
+      const mi = this.a.indexOf(mess[j].toUpperCase());
+      let ki = this.a.indexOf(k[indK].toUpperCase());
+      console.log(ki);
+      const c = this.a[ ( ( ( this.a.length + ( mi + ki ) ) % this.a.length ) ) ];	
+      if (this.a.includes(m[i].toUpperCase())) {
+        res += c;
+        j += 1;
+      } else {
+        res += m[i];
+      }
+    }
+    if (this.bool) {
+      return res;
+    } else {
+      return res.split('').reverse().join('');
+    }
+  }
+  decrypt(m, k) {
+    const mess = m.split(' ').join('');
+    let res = '', j = 0;
+    const maxlength = Math.max(m.length, k.length);
+    for(let i = 0; i < maxlength; i++){
+      let indM = (i >= m.length) ? i % m.length : i;
+      let indK = (j >= k.length) ? j % k.length : j;
+      const mi = this.a.indexOf(mess[j].toUpperCase());
+      let ki = this.a.indexOf(k[indK].toUpperCase());
+      ki = -ki;
+      console.log(ki);
+      const c = this.a[ ( ( ( this.a.length + ( mi + ki ) ) % this.a.length ) ) ];	
+      if (this.a.includes(m[i].toUpperCase())) {
+        res += c;
+        j += 1;
+      } else {
+        res += m[i];
+      }
+    }
+    if (this.bool) {
+      return res;
+    } else {
+      return res.split('').reverse().join('');
+    }
   }
 }
 
