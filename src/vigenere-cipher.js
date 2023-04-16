@@ -26,6 +26,7 @@ class VigenereCipheringMachine {
   a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   bool;
   encrypt(m, k) {
+    if( m === undefined || k === undefined) throw Error('Incorrect arguments!');
     const mess = m.split(' ').join('');
     let res = '', j = 0;
     const maxlength = Math.max(m.length, k.length);
@@ -50,6 +51,7 @@ class VigenereCipheringMachine {
     }
   }
   decrypt(m, k) {
+    if( m === undefined || k === undefined) throw Error('Incorrect arguments!');
     const mess = m.split(' ').join('');
     let res = '', j = 0;
     const maxlength = Math.max(m.length, k.length);
