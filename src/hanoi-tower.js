@@ -14,13 +14,10 @@ const { NotImplementedError } = require('../extensions/index.js');
  * calculateHanoi(9, 4308) => { turns: 511, seconds: 427 }
  *
  */
-function calculateHanoi(disksNumber, turnsSpeed) {
-  const amountTurns = Math.pow(2, disksNumber) - 1;
-  const amountSecond = 3600 / turnsSpeed * amountTurns;
-  return {
-    turns: amountTurns,
-    seconds: Math.floor(amountSecond)
-  };
+function calculateHanoi(diskNumber, turnsSpeed) {
+  const turns = Math.pow(2, diskNumber) - 1;
+  const seconds = Math.floor(turns / (turnsSpeed / 3600));
+  return { turns, seconds };
 }
 
 module.exports = {
